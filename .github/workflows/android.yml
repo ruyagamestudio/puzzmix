@@ -36,7 +36,7 @@ jobs:
 
       - name: Dik ekrana kilitle
         run: |
-          sed -i 's/<activity /<activity android:screenOrientation="portrait" /' android/app/src/main/AndroidManifest.xml
+          sed -i 's/<activity/<activity android:screenOrientation="portrait"/' android/app/src/main/AndroidManifest.xml
           grep -n "screenOrientation" android/app/src/main/AndroidManifest.xml
 
       - name: Test APK derle
