@@ -1,0 +1,9 @@
+{
+  "appId": "com.ruyagamestudio.puzzmix",
+  "appName": "Puzzmix",
+  "webDir": "www",
+  "backgroundColor": "#E9EEF2",
+  "android": {
+    "allowMixedContent": false
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "name": "puzzmix",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Puzzmix - bulmacaları çöz, resmi parça parça aç",
+  "dependencies": {
+    "@capacitor/android": "^8.0.0",
+    "@capacitor/cli": "^8.0.0",
+    "@capacitor/core": "^8.0.0"
+  },
+  "devDependencies": {
+    "@capacitor/assets": "^3.0.5",
+    "@fontsource-variable/bricolage-grotesque": "^5.1.0",
+    "@fontsource-variable/instrument-sans": "^5.1.0",
+    "@fontsource/ibm-plex-mono": "^5.1.0"
+  }
+}
