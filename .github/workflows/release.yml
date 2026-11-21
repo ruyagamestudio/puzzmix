@@ -45,16 +45,16 @@ jobs:
       - name: İmza anahtarını hazırla
         env:
           KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
+          KEYSTORE_PASSWORD_RAW: ${{ secrets.KEYSTORE_PASSWORD }}
         run: |
+          echo "KEYSTORE_PASSWORD=$(printf %s "$KEYSTORE_PASSWORD_RAW" | tr -d '[:space:]')" >> "$GITHUB_ENV"
           test -n "$KEYSTORE_BASE64" || { echo "KEYSTORE_BASE64 sırrı eksik"; exit 1; }
-          echo "$KEYSTORE_BASE64" | base64 -d > "$RUNNER_TEMP/yukleme.jks"
+          printf %s "$KEYSTORE_BASE64" | tr -d '[:space:]' | base64 -d > "$RUNNER_TEMP/yukleme.jks"
           echo "KEYSTORE_PATH=$RUNNER_TEMP/yukleme.jks" >> "$GITHUB_ENV"
           printf '\nandroid {\n    signingConfigs {\n        release {\n            storeFile file(System.getenv("KEYSTORE_PATH"))\n            storePassword System.getenv("KEYSTORE_PASSWORD")\n            keyAlias "puzzmix"\n            keyPassword System.getenv("KEYSTORE_PASSWORD")\n        }\n    }\n    buildTypes {\n        release {\n            signingConfig signingConfigs.release\n        }\n    }\n}\n' >> android/app/build.gradle
 
       - name: İmzalı AAB derle
         working-directory: android
-        env:
-          KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
         run: ./gradlew bundleRelease
 
       - name: AAB'yi yükle
